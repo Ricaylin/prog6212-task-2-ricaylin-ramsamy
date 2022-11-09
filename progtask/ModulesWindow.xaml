@@ -1,0 +1,93 @@
+﻿<Window
+    x:Class="progtask.ModulesWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:progtask"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="Study App"
+    Width="800"
+    Height="450"
+    mc:Ignorable="d">
+    <Grid Margin="15">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="500" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Grid.Column="0">
+            <TextBlock
+                Margin="0,0,0,15"
+                HorizontalAlignment="Center"
+                FontSize="15"
+                Text="Add Module" />
+            <TextBlock Text="Module Code" />
+            <TextBox x:Name="ModuleCodeTextBox" Margin="0,0,10,10" />
+            <TextBlock Text="Module Name" />
+            <TextBox x:Name="ModuleNameTextBox" Margin="0,0,10,10" />
+            <TextBlock Text="Module Credits" />
+            <TextBox x:Name="CreditsTextBox" Margin="0,0,10,10" />
+            <TextBlock Text="Class Hours Per Week" />
+            <TextBox x:Name="ClassHoursPerWeekTextBox" Margin="0,0,10,10" />
+            <TextBlock Text="Semester Start Date" />
+            <DatePicker x:Name="StartDateDatePicker" Margin="0,0,10,10" />
+            <TextBlock Text="Number Of Weeks In Semester" />
+            <TextBox x:Name="NumberOfWeeksTextBox" Margin="0,0,10,15" />
+            <Button
+                x:Name="CreateModuleButton"
+                Margin="0,0,10,10"
+                Click="CreateModuleButton_Click"
+                Content="Create Module" />
+            <TextBlock x:Name="ErrorTextBlock" TextWrapping="Wrap" />
+        </StackPanel>
+        <StackPanel
+            Grid.Row="0"
+            Grid.Column="1"
+            HorizontalAlignment="Stretch">
+            <TextBlock
+                Margin="0,0,0,15"
+                HorizontalAlignment="Center"
+                FontSize="15"
+                Text="Module Details" />
+            <ListBox
+                x:Name="ModulesListBox"
+                HorizontalAlignment="Stretch"
+                HorizontalContentAlignment="Center"
+                d:ItemsSource="{d:SampleData ItemCount=5}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Padding="0,0,10,0" Text="{Binding ModuleCode}" />
+                            <TextBlock Padding="0,0,10,0" Text="{Binding ModuleName}" />
+                            <TextBlock Padding="0,0,10,0">
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="( {0} / {1} ) Hours Of Studying Completed.">
+                                        <Binding Path="HoursStudiedToday" />
+                                        <Binding Path="RecommendedHoursToStudy" />
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <TextBlock
+                Margin="0,0,0,15"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Bottom"
+                FontSize="15"
+                Text="Add Time Studied" />
+            <ComboBox x:Name="ModulesComboBox" VerticalAlignment="Bottom" />
+            <TextBox x:Name="TimeStudiedTodayTextBox" Margin="0,0,0,10" />
+            <Button
+                x:Name="AddTimeButton"
+                Margin="0,0,0,10"
+                Content="Add Time" Click="AddTimeButton_Click" />
+            <TextBlock x:Name="ErrorTimeTextBlock" TextWrapping="Wrap" />
+
+
+        </StackPanel>
+    </Grid>
+</Window>
